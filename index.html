@@ -76,10 +76,33 @@
             0% { opacity: 1; transform: scale(1); }
             100% { opacity: 0; transform: scale(3); }
         }
+           @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .photo {
+            position: absolute;
+            bottom: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: auto;
+            opacity: 0;
+            transition: transform 3s ease-out, opacity 3s ease-out;
+        }
+        .photo.active {
+            transform: translate(-50%, -100%);
+            opacity: 1;
+        }
+    
     </style>
 </head>
 <body>
-
+<img src="C:\louie\1106\pic\116206.jpg" alt="Birthday Photo" class="photo" id="photo">
 <div class="container">
     <h1>Happy Birthday <br>TOFU MAX!</h1>
     <p>21 years as a tofu</p>
@@ -112,6 +135,14 @@
     function getRandomColor() {
         const colors = ['#FF5733', '#FFD700', '#FF8C00', '#FF69B4', '#6A5ACD'];
         return colors[Math.floor(Math.random() * colors.length)];
+    }
+    function showSurprise() {
+        const message = document.getElementById("surpriseMessage");
+        message.style.display = "block";
+        message.innerHTML = "Here's to a year filled with laughter, love, and amazing moments. Cheers to you!";
+        
+        const photo = document.getElementById("photo");
+        photo.classList.add("active");
     }
 </script>
 
