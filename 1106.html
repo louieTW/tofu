@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #00d0ff, #00f2ff);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0.5em 0;
+            animation: fadeIn 2s;
+        }
+        p {
+            font-size: 1.5em;
+            margin: 0.5em 0;
+            animation: fadeIn 3s;
+        }
+        button {
+            background: #ff4757;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            animation: fadeIn 4s;
+        }
+        button:hover {
+            background: #ff6b81;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            animation: explode 1s forwards;
+            opacity: 0;
+        }
+        @keyframes explode {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(3); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Happy Birthday <br>TOFU MAX!</h1>
+    <p>21 years as a tofu</p>
+    <button onclick="showMessage()">點擊產生效果</button>
+    <p id="surpriseMessage" style="display: none; font-size: 1.2em; margin-top: 20px;"></p>
+</div>
+<div class="fireworks" id="fireworks"></div>
+
+<script>
+    function showMessage() {
+        const message = document.getElementById("surpriseMessage");
+        message.style.display = "block";
+        message.innerHTML = "許少甫大帥哥生日快樂";
+        createFireworks();
+    }
+
+    function createFireworks() {
+        const fireworksContainer = document.getElementById('fireworks');
+        for (let i = 0; i < 20; i++) {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            firework.style.left = `${Math.random() * 100}vw`;
+            firework.style.top = `${Math.random() * 100}vh`;
+            firework.style.backgroundColor = getRandomColor();
+            fireworksContainer.appendChild(firework);
+            setTimeout(() => firework.remove(), 1000);
+        }
+    }
+
+    function getRandomColor() {
+        const colors = ['#FF5733', '#FFD700', '#FF8C00', '#FF69B4', '#6A5ACD'];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+</script>
+
+</body>
+</html>
